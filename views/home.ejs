@@ -2,6 +2,9 @@
     <title><%= title %></title>
     <body>
         <div>
+            <div>
+                <a href="/category/addCategory">Add A Category</a>
+            </div>
         <% categories.map((category) => { %>
             <ul>
                 <li>Name: <%= category.category_name %> </li>
@@ -12,6 +15,9 @@
        <%  }) %>    
         </div>
         <div>
+            <div>
+                <a href="/product/addProduct">Add A Product</a>
+            </div>
         <% products.map((product) => { %>
             <ul>
                 <img src="<%= product.product_image_url %>" alt="prduct_image" />

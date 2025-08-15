@@ -3,16 +3,14 @@
         <title><%= title %></title>
     </head>
     <body>
-        <h2><% title %></h2>
-        <form action="/create" method="POST">
+        <h2><%= title %></h2>
+        <form action="/category/addCategory" method="POST">
             <label for="">Name: </label>
-            <input name="product_name"/>
-            <label for="">Description: </label>
-            <input name="product_description"/>
-            <label for="">Image Url:</label>
-            <input name="product_image_url"/>
-            <label >Category:</label>
             <input name="category_name"/>
+            <label for="">Description: </label>
+            <input name="category_description"/>
+            <label for="">Image:</label>
+            <input name="category_image_url"/>
             <button type="submit">Submit</button>
         </form>
     </body>

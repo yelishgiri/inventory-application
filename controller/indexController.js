@@ -6,14 +6,6 @@ async function fetchAll(req, res){
     res.render("home", { title:"Inventory Application" , products: products, categories: categories});
 }
 
-async function fetchAllProducts(req,res){
-    const products = await db.getAllProducts();
-}
-
-async function fetchAllCategories(req,res){
-    const categories = await db.getAllCategories();
-}
-
 async function fetchProductInfo(req, res) {
     const product = await db.getProductById(req.params.id);
     res.render("product", { product: product});
@@ -59,11 +51,12 @@ async function deleteCategory(req,res) {
 }
 
 async function addAProductGet(req,res) {
-    res.render('addProduct');
+    const categories = await db.getAllCategories()
+    res.render('addProduct', { title:"Add Product", categories: categories});
 }
 
 async function addACategoryGet(req,res){
-    res.render('addCategory');
+    res.render('addCategory', { title: "Add Category"});
 }
 
 async function addAProductPost(req,res) {
@@ -75,14 +68,11 @@ async function addAProductPost(req,res) {
 async function addACategoryPost(req, res) {
     const { category_name, category_description, category_image_url} = req.body;
     await db.addNewCategory(category_name, category_description, category_image_url);
-    redirect('/');
+    res.redirect('/');
 }
 
 module.exports = {
     fetchAll,
-    fetchAllCategories,
-    fetchAllProducts,
-    fetchAllCategories,
     fetchCategoryInfo,
     fetchProductInfo,
     deleteProduct,
