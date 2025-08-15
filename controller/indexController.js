@@ -10,13 +10,23 @@ async function fetchProductInfo(req, res) {
     res.render("productInfo", { products: product});
 }
 
-async function updateCategory(req,res) {
+async function updateCategoryGet(req,res){
+    const category  = db.getCategoryById(req.params.id);
+    res.render('updateCategory', {title: "Update Category", category: category});
+}
+
+async function updateProductGet(){
+    const product  = db.getProductById(req.params.id);
+    res.render('updateProduct', {title: "Update Product", product: product});
+}
+
+async function updateCategoryPost(req,res) {
     const {category_name, category_description} = req.body;
     await db.updateCategoryById(req.params.id, category_name, category_description);
     res.redirect('/');
 }
 
-async function updateProduct(req, res) {
+async function updateProductPost(req, res) {
     const {product_name, product_description} = req.body;
     await db.updateProductById(req.params.id, product_name, product_description);
     res.redirect('/');
@@ -32,11 +42,38 @@ async function deleteCategory(req,res) {
     res.redirect('/');
 }
 
+async function addAProductGet(req,res) {
+    res.render('addProduct');
+}
+
+async function addACategoryGet(req,res){
+    res.render('addCategory');
+}
+
+async function addAProductPost(req,res) {
+    const { product_name, product_description, product_image_url, category_id} = req.body;
+    await db.addNewProduct(product_name, product_description, product_image_url, category_id);
+    res.redirect('/');
+}
+
+async function addACategoryPost(req, res) {
+    const { category_name, category_description, category_image_url} = req.body;
+    await db.addNewProduct(product_name, product_description, product_image_url, category_id);
+    redirect('/');
+}
+
 module.exports = {
     fetchAllProducts,
     fetchProductInfo,
     deleteProduct,
     deleteCategory,
-    updateCategory,
-    updateProduct
+    updateCategoryPost,
+    updateProductPost,
+    addAProductPost,
+    addACategoryPost,
+    addAProductGet,
+    addACategoryGet,
+    updateCategoryGet,
+    updateCategoryPost
 }
+

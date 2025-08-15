@@ -21,10 +21,16 @@ async function searchProducts(search) {
   return rows;
 }
 
-async function searchProductsById(id) {
+async function getProductById(id) {
   const { rows } = await pool.query('SELECT * FROM Products WHERE product_id = $1',[id]);
   return rows;
 }
+
+async function getCategoryById(id) {
+  const { rows } = await pool.query('SELECT * FROM Categories WHERE category_id = $1',[id]);
+  return rows;
+}
+
 
 async function getProductsByCategory(category_id) {
   const { rows } = await pool.query(
@@ -73,9 +79,10 @@ module.exports = {
   getProductsByCategory,
   addNewCategory,
   addNewProduct,
-  searchProductsById,
   deleteProductById,
   deleteCategoryById,
   updateCategoryById,
-  updateProductById
+  updateProductById,
+  getProductById,
+  getCategoryById
 };
