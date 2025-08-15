@@ -4,10 +4,10 @@
             <%= title %>
         </title>
         <form action="/category/id/<%=category.category_id %>/updateCategory" method="POST">
-            <input type="text" name="category_name" value="<%= category.category %>" required>
+            <input type="text" name="category_name" value="<%= category.category_name %>" required>
             <input type="text" name="category_description" value="<%= category.category_description %>" required>
             <li>Category Thumbnail:
-                <img src="<%= category.category_image_url %>" alt="category_image"/>
+                <img src="<%= category.category_image_url %>" alt="category_image" width="400px" height="400px"/>
             </li>
             <button type="submit">Submit</button>
         </form>

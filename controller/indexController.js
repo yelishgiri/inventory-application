@@ -19,7 +19,6 @@ async function fetchProductInfo(req, res) {
     res.render("product", { product: product});
 }
 
-
 async function fetchCategoryInfo(req,res) {
     const products = await db.getProductsByCategory(req.params.id);
     const category = await db.getCategoryById(req.params.id);
@@ -27,7 +26,7 @@ async function fetchCategoryInfo(req,res) {
 }
 
 async function updateCategoryGet(req,res){
-    const category  = db.getCategoryById(req.params.id);
+    const category = await db.getCategoryById(req.params.id);
     res.render('updateCategory', {title: "Update Category", category: category});
 }
 
