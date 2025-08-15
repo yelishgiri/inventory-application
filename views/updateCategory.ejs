@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <form action="/category/id/<%=category.category_id %>/updateCategory" method="POST">
+            <input type="text" name="category_name" value="<%= category.category %>" required>
+            <input type="text" name="category_description" value="<%= category.category_description %>" required>
+            <li>Category Thumbnail:
+                <img src="<%= category.category_image_url %>" alt="product_image"/>
+            </li>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="/">Back to home</a>
+    </head>
+</html>

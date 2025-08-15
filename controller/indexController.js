@@ -2,12 +2,12 @@ const db = require('../db/queries');
 
 async function fetchAllProducts(req, res){
     const products = await db.getAllProducts();
-    res.render("index", { title:"Inventory Application" , products: products});
+    res.render("home", { title:"Inventory Application" , products: products});
 }
 
 async function fetchProductInfo(req, res) {
     const product = await db.getProductById(req.params.id);
-    res.render("productInfo", { product: product});
+    res.render("product", { product: product});
 }
 
 async function updateCategoryGet(req,res){
