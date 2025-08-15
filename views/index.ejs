@@ -6,8 +6,9 @@
                 <img src="<%= product.product_image_url %>" alt="prduct_image" />
                 <li>Name: <%= product.product_name %> </li>
                 <li>Description: <%= product.product_description %></li>
+                <li>Category: <%= product.category_name %></li>
                 <li>Added At: <%= product.product_created_at %></li>
-                <a href="/id/<%= product.product_id %>">More Info</a>
+                <a href="/product/id/<%= product.product_id %>">More Info</a>
             </ul>
        <%  }) %>
     </body>

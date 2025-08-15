@@ -6,7 +6,7 @@ async function getAllCategories() {
 }
 
 async function getAllProducts() {
-  const { rows } = await pool.query("SELECT * FROM Products");
+  const { rows } = await pool.query("SELECT p.*, c.category_name FROM Products p JOIN Categories c ON p.category_id = c.category_id");
   return rows;
 }
 
@@ -22,19 +22,19 @@ async function searchProducts(search) {
 }
 
 async function getProductById(id) {
-  const { rows } = await pool.query('SELECT * FROM Products WHERE product_id = $1',[id]);
-  return rows;
+  const { rows } = await pool.query('SELECT p.*, c.category_name FROM Products p JOIN Categories c ON p.category_id = c.category_id WHERE p.product_id = $1',[id]);
+  return rows[0] || null;
 }
 
 async function getCategoryById(id) {
   const { rows } = await pool.query('SELECT * FROM Categories WHERE category_id = $1',[id]);
-  return rows;
+  return rows[0] || null;
 }
 
 
 async function getProductsByCategory(category_id) {
   const { rows } = await pool.query(
-    "SELECT * FROM Products WHERE category_id=$1",
+    "SELECT p.*, c.category_name FROM Products p JOIN Categories c ON p.category_id = c.category_id WHERE p.category_id=$1",
     [category_id]
   );
   return rows;

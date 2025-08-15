@@ -6,8 +6,8 @@ async function fetchAllProducts(req, res){
 }
 
 async function fetchProductInfo(req, res) {
-    const product = await db.searchProductsById(req.params.id);
-    res.render("productInfo", { products: product});
+    const product = await db.getProductById(req.params.id);
+    res.render("productInfo", { product: product});
 }
 
 async function updateCategoryGet(req,res){
@@ -15,8 +15,9 @@ async function updateCategoryGet(req,res){
     res.render('updateCategory', {title: "Update Category", category: category});
 }
 
-async function updateProductGet(){
-    const product  = db.getProductById(req.params.id);
+async function updateProductGet(req,res){
+    const product  = await db.getProductById(req.params.id);
+
     res.render('updateProduct', {title: "Update Product", product: product});
 }
 
@@ -58,7 +59,7 @@ async function addAProductPost(req,res) {
 
 async function addACategoryPost(req, res) {
     const { category_name, category_description, category_image_url} = req.body;
-    await db.addNewProduct(product_name, product_description, product_image_url, category_id);
+    await db.addNewCategory(category_name, category_description, category_image_url);
     redirect('/');
 }
 
@@ -74,6 +75,7 @@ module.exports = {
     addAProductGet,
     addACategoryGet,
     updateCategoryGet,
-    updateCategoryPost
+    updateCategoryPost,
+    updateProductGet
 }
 

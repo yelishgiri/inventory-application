@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <form action="/product/id/<%=product.product_id %>/updateProduct" method="POST">
+            <input type="text" name="product_name" value="<%= product.product_name %>" required>
+            <input type="text" name="product_description" value="<%= product.product_description %>" required>
+            <li>Category: <%= product.category_name %></li>
+            <li>Product Thumbnail:
+                <img src="<%= product.product_image_url %>" alt="product_image"/>
+            </li>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="/">Back to home</a>
+    </head>
+</html>
