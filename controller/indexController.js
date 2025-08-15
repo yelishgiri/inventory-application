@@ -1,13 +1,29 @@
 const db = require('../db/queries');
 
-async function fetchAllProducts(req, res){
+async function fetchAll(req, res){
     const products = await db.getAllProducts();
-    res.render("home", { title:"Inventory Application" , products: products});
+    const categories = await db.getAllCategories();
+    res.render("home", { title:"Inventory Application" , products: products, categories: categories});
+}
+
+async function fetchAllProducts(req,res){
+    const products = await db.getAllProducts();
+}
+
+async function fetchAllCategories(req,res){
+    const categories = await db.getAllCategories();
 }
 
 async function fetchProductInfo(req, res) {
     const product = await db.getProductById(req.params.id);
     res.render("product", { product: product});
+}
+
+
+async function fetchCategoryInfo(req,res) {
+    const products = await db.getProductsByCategory(req.params.id);
+    const category = await db.getCategoryById(req.params.id);
+    res.render("category", {products: products, category: category});
 }
 
 async function updateCategoryGet(req,res){
@@ -64,7 +80,11 @@ async function addACategoryPost(req, res) {
 }
 
 module.exports = {
+    fetchAll,
+    fetchAllCategories,
     fetchAllProducts,
+    fetchAllCategories,
+    fetchCategoryInfo,
     fetchProductInfo,
     deleteProduct,
     deleteCategory,
@@ -76,6 +96,6 @@ module.exports = {
     addACategoryGet,
     updateCategoryGet,
     updateCategoryPost,
-    updateProductGet
+    updateProductGet,
 }
 
