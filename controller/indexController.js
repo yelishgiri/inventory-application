@@ -5,6 +5,24 @@ async function fetchAllProducts(req, res){
     res.render("index", { title:"Inventory Application" , products: products});
 }
 
+async function fetchProductInfo(req, res) {
+    const product = await db.searchProductsById(req.params.id);
+    res.render("productInfo", { products: product});
+}
+
+async function deleteProduct(req,res){
+    await db.deleteProductById(req.params.id);
+    res.redirect("/");
+}
+
+async function deleteCategory(req,res) {
+    await db.deleteCategoryById(req.params.id);
+    res.redirect('/');
+}
+
 module.exports = {
-    fetchAllProducts
+    fetchAllProducts,
+    fetchProductInfo,
+    deleteProduct,
+    deleteCategory
 }
