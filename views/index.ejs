@@ -1,0 +1,13 @@
+<html>
+    <title><%= title %></title>
+    <body>
+        <% products.map((product) => { %>
+            <ul>
+                <img src="<%= product.product_image_url %>" alt="prduct_image" />
+                <li>Name: <%= product.product_name %> </li>
+                <li>Description: <%= product.product_description %></li>
+                <li>Added At: <%= product.product_created_at %></li>
+            </ul>
+       <%  }) %>
+    </body>
+</html>
