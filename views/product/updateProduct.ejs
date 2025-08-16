@@ -1,17 +1,43 @@
-<html>
-    <head>
-        <title>
-            <%= title %>
-        </title>
-        <form action="/product/id/<%=product.product_id %>/updateProduct" method="POST">
-            <input type="text" name="product_name" value="<%= product.product_name %>" required>
-            <input type="text" name="product_description" value="<%= product.product_description %>" required>
-            <li>Category: <%= product.category_name %></li>
-            <li>Product Thumbnail:
-                <img src="<%= product.product_image_url %>" alt="product_image"/>
-            </li>
-            <button type="submit">Submit</button>
-        </form>
-        <a href="/">Back to home</a>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update <%= product.product_name %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Update Product</h2>
+            
+            <form action="/product/id/<%=product.product_id %>/updateProduct" method="POST">
+                <div class="form-group">
+                    <label for="product_name">Product Name:</label>
+                    <input type="text" id="product_name" name="product_name" value="<%= product.product_name %>" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product_description">Description:</label>
+                    <textarea id="product_description" name="product_description" rows="4" required><%= product.product_description %></textarea>
+                </div>
+                
+                <div class="current-info">
+                    <div class="info-item">
+                        <strong>Current Category:</strong> <%= product.category_name %>
+                    </div>
+                    
+                    <div class="image-preview">
+                        <strong>Current Image:</strong>
+                        <img src="<%= product.product_image_url %>" alt="<%= product.product_name %>" />
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Update Product</button>
+            </form>
+            
+            <a href="/" class="back-link">Back to home</a>
+        </div>
+    </div>
+</body>
 </html>
