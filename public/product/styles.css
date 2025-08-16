@@ -1,3 +1,4 @@
+/* Keeping only product page styles, removing home/listing styles */
 * {
   margin: 0;
   padding: 0;
@@ -11,10 +12,16 @@ body {
   background-color: #fff;
 }
 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 /* Form styles for add/edit product pages */
 .form-container {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 2rem auto;
   background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
@@ -66,7 +73,11 @@ body {
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  height: 44px;
   transition: background-color 0.2s;
 }
 
@@ -160,6 +171,8 @@ body {
   gap: 1rem;
   justify-content: center;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .current-info {
@@ -192,6 +205,12 @@ body {
 
   .action-buttons {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .action-buttons .btn {
+    width: 100%;
+    min-width: auto;
   }
 
   .product-detail .product-image img {
